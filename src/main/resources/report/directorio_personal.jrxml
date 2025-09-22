@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.21.5.final using JasperReports Library version 6.21.5-74d586df47b25dbd05bd0957999819196e59934a  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="personal_directorio" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="0" rightMargin="20" topMargin="0" bottomMargin="0" uuid="8f44a55e-d17a-497c-b7bb-7f8ea09d56c7">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="organizacion"/>
+	<parameter name="id" class="java.lang.Integer"/>
+	<queryString>
+		<![CDATA[SELECT 
+                elem->>'nombre' AS nombre,
+                elem->>'valor'  AS valor
+            FROM proveedores.organizaciones o
+            CROSS JOIN LATERAL jsonb_array_elements(o.personal_directorio) AS elem
+            WHERE o.id = $P{id}]]>
+	</queryString>
+	<field name="nombre" class="java.lang.String"/>
+	<field name="valor" class="java.lang.String"/>
+	<title>
+		<band height="22">
+			<rectangle>
+				<reportElement mode="Opaque" x="2" y="4" width="555" height="18" backcolor="#C7DEFF" uuid="528f3642-b72e-4783-8d9b-3edd93cb0796"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="5" y="6" width="385" height="15" uuid="487569a9-2469-45b7-a78a-d124c1ad09ea">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Left">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[4. PERSONAL DIRECTORIO Y TECNICO.]]></text>
+			</staticText>
+		</band>
+	</title>
+	<columnHeader>
+		<band height="22">
+			<staticText>
+				<reportElement x="12" y="0" width="210" height="20" uuid="2b7f5ed1-47e6-465b-a1c7-30036fff5606"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Cargo]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="256" y="0" width="220" height="20" uuid="9c7bd850-c4f2-4f55-a7db-120fd9b1ee72"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Dato]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="22">
+			<textField>
+				<reportElement x="19" y="0" width="181" height="15" uuid="d832c502-25dd-4aca-81f8-9d62a54464a7">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nombre}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="210" y="0" width="293" height="15" uuid="dce8de64-f6c7-4ce7-b3ba-e8717926c81e">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{valor} == null ? "" : $F{valor}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="202" y="1" width="8" height="15" uuid="ce695f95-3b78-4c79-9ac6-a11e4ac26e9f">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<line>
+				<reportElement x="3" y="20" width="500" height="1" forecolor="#BDB7B7" uuid="609d534f-8a8e-47dc-a750-8372294930ec">
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+			</line>
+		</band>
+	</detail>
+</jasperReport>

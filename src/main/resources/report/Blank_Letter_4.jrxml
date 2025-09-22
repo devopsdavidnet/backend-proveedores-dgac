@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.21.5.final using JasperReports Library version 6.21.5-74d586df47b25dbd05bd0957999819196e59934a  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="CertificadosEspecificosAprobados" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="0" rightMargin="20" topMargin="0" bottomMargin="0" uuid="8f1f6b3a-92e2-45cc-b27d-aaa111cc3344">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="organizacion"/>
+	<parameter name="id" class="java.lang.Integer"/>
+	<queryString>
+		<![CDATA[SELECT
+            elem->>'nombre' AS nombre,
+            elem->>'valor' AS valor,
+            elem->>'otroNombre' AS otro_nombre
+        FROM
+            proveedores.organizaciones o
+        CROSS JOIN LATERAL
+            jsonb_array_elements(o.certificados_especificos_aprobados) AS elem
+        WHERE
+            o.id = $P{id}
+            AND NOT (elem->>'nombre' = 'Otro' AND elem->>'valor' IS DISTINCT FROM 'true')]]>
+	</queryString>
+	<field name="nombre" class="java.lang.String"/>
+	<field name="valor" class="java.lang.String"/>
+	<field name="otro_nombre" class="java.lang.String"/>
+	<title>
+		<band height="21">
+			<staticText>
+				<reportElement x="0" y="2" width="555" height="18" uuid="331d90c6-a254-41a1-b3d8-663600aa7c48"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[CERTIFICADOS ESPECIFICOS APROBADOS :]]></text>
+			</staticText>
+		</band>
+	</title>
+	<columnHeader>
+		<band height="25">
+			<staticText>
+				<reportElement x="8" y="0" width="280" height="25" uuid="ed41f20c-95ff-4089-8f6b-d9fb67351123"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Nombre]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="300" y="0" width="50" height="25" uuid="b72a870a-92ef-451b-80ac-1069df87e355"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Si/No]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="21">
+			<textField>
+				<reportElement x="32" y="0" width="259" height="16" uuid="b684e53c-fac1-4ac5-9677-0ee8afccd846">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textFieldExpression><![CDATA[$F{nombre}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="300" y="0" width="50" height="18" uuid="0332d9d0-0e5b-4029-b9d4-7648fa29ffb1">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[($F{valor} != null && ($F{valor}.equalsIgnoreCase("true") || $F{valor}.equals("1")))
+                    ? "Si"
+                    : "No"]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="1" y="19" width="500" height="1" forecolor="#BDB7B7" uuid="b9eb2dfd-f6a8-41f4-b8c9-408aaeeb4a8e">
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+			</line>
+		</band>
+	</detail>
+	<summary>
+		<band height="18">
+			<textField textAdjust="StretchHeight">
+				<reportElement x="18" y="2" width="535" height="16" uuid="1561a11e-0d60-4b7b-a791-20a73cde4068">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<printWhenExpression><![CDATA[$F{otro_nombre} != null && !$F{otro_nombre}.isEmpty()]]></printWhenExpression>
+				</reportElement>
+				<textFieldExpression><![CDATA["Detalle Otro: " + $F{otro_nombre}]]></textFieldExpression>
+			</textField>
+		</band>
+	</summary>
+</jasperReport>

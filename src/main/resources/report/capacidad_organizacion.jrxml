@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.21.5.final using JasperReports Library version 6.21.5-74d586df47b25dbd05bd0957999819196e59934a  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Reporte_Capacidades_OtroDetalle" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="0" rightMargin="20" topMargin="0" bottomMargin="0" uuid="77777777-7777-7777-7777-777777777777">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="organizacion"/>
+	<parameter name="id" class="java.lang.Integer"/>
+	<queryString>
+		<![CDATA[SELECT
+            elem->>'nombre' AS nombre,
+            elem->>'valor' AS valor,
+            elem->>'otroNombre' AS otro_nombre
+        FROM
+            proveedores.organizaciones o
+        CROSS JOIN LATERAL
+            jsonb_array_elements(o.capacidades_organizacion) AS elem
+        WHERE
+            o.id = $P{id}
+            AND NOT (elem->>'nombre' = 'Otro' AND elem->>'valor' IS DISTINCT FROM 'true');]]>
+	</queryString>
+	<field name="nombre" class="java.lang.String"/>
+	<field name="valor" class="java.lang.String"/>
+	<field name="otro_nombre" class="java.lang.String"/>
+	<pageHeader>
+		<band height="15">
+			<staticText>
+				<reportElement x="0" y="0" width="290" height="12" uuid="3b46ccaf-d57a-4794-ad91-002900aef2b8">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[CAPACIDADES DE LA ORGANIZACIÓN/ENTIDAD :
+]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="20">
+			<staticText>
+				<reportElement mode="Opaque" x="0" y="0" width="264" height="20" backcolor="#E0E0E0" uuid="ac16dd01-e321-4bf3-9efe-9a8dc5854837"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle"/>
+				<text><![CDATA[Capacidad]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="264" y="0" width="240" height="20" backcolor="#E0E0E0" uuid="cdc747e4-2548-405c-9f12-d34c0118efb8">
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[Si/No]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="21">
+			<textField>
+				<reportElement x="16" y="-1" width="255" height="20" uuid="74f083e2-fc17-4325-9f2a-371c0215347d"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{nombre}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="284" y="0" width="200" height="20" uuid="d33430f1-48cc-4447-bc9c-a1bb6ad6da95"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA["true".equalsIgnoreCase($F{valor}) ? "Si" : "No"]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="2" y="20" width="500" height="1" forecolor="#BDB7B7" uuid="1ba02172-eb08-4dca-a525-042f55cc67ae">
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+			</line>
+		</band>
+	</detail>
+	<summary>
+		<band height="17">
+			<textField textAdjust="StretchHeight">
+				<reportElement x="16" y="0" width="464" height="13" uuid="b92157b8-cf30-462c-80a6-731e653b5f6a">
+					<printWhenExpression><![CDATA[$F{otro_nombre} != null && !"".equals($F{otro_nombre})]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Left" verticalAlignment="Top"/>
+				<textFieldExpression><![CDATA[$F{otro_nombre}]]></textFieldExpression>
+			</textField>
+		</band>
+	</summary>
+</jasperReport>

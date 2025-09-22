@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.21.5.final using JasperReports Library version 6.21.5-74d586df47b25dbd05bd0957999819196e59934a  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="AeronavesReport" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="0" rightMargin="20" topMargin="0" bottomMargin="0" uuid="cf2a9024-f48c-4fe6-9a23-7dc92a18e656">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="organizacion"/>
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<parameter name="id" class="java.lang.Integer"/>
+	<queryString language="SQL">
+		<![CDATA[SELECT 
+                aeronave->>'marca' AS marca,
+                aeronave->>'serie' AS serie,
+                aeronave->>'modelo' AS modelo,
+                aeronave->>'matricula' AS matricula,
+                aeronave->>'fechaExpiracion' AS fecha_expiracion
+            FROM proveedores.organizaciones o
+            CROSS JOIN LATERAL jsonb_array_elements(o.aerovanves_registradas->'aeronaves') AS aeronave
+            WHERE o.id = $P{id}
+            ORDER BY aeronave->>'marca';]]>
+	</queryString>
+	<field name="marca" class="java.lang.String"/>
+	<field name="serie" class="java.lang.String"/>
+	<field name="modelo" class="java.lang.String"/>
+	<field name="matricula" class="java.lang.String"/>
+	<field name="fecha_expiracion" class="java.lang.String"/>
+	<pageHeader>
+		<band height="31">
+			<property name="com.jaspersoft.studio.unit.height" value="px"/>
+			<staticText>
+				<reportElement x="5" y="17" width="34" height="14" uuid="195eb359-7886-4dfa-9814-aad6ec7f46ed">
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+				</reportElement>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Nro.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="47" y="17" width="53" height="14" uuid="195eb359-7886-4dfa-9814-aad6ec7f46ed">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[MARCA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="133" y="17" width="80" height="14" uuid="554eb4a3-a742-4ffe-aa18-d17ebc196352">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[MODELO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="235" y="17" width="80" height="14" uuid="05ada007-f72c-4c5a-86f4-fcd65d4e1db5">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[SERIE]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="339" y="17" width="80" height="14" uuid="abefda25-68ad-4e40-8941-c05ff8a5fb72">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[MATRÍCULA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="438" y="17" width="80" height="14" uuid="48aca540-4dc1-4c08-ac78-e763cdc162de">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[FECHA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="3" y="4" width="447" height="15" uuid="2596ddf7-ed4a-4718-96cb-e95553aa34d7"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[CANTIDAD DE AERONAVES REGISTRADAS POR LA ORGANIZACION :]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<detail>
+		<band height="21">
+			<textField>
+				<reportElement x="-4" y="4" width="41" height="15" uuid="5562ac77-aa8f-467a-990b-a15878b3379c">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$V{REPORT_COUNT}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="44" y="4" width="100" height="15" uuid="e56d2fc8-c0d0-4fad-8590-e04ffef2a322">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textFieldExpression><![CDATA[$F{marca}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="233" y="3" width="100" height="14" uuid="51984b93-df52-4cd9-a4c0-01e907f0a565">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textFieldExpression><![CDATA[$F{serie}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="130" y="5" width="100" height="14" uuid="1dd3dc66-a28e-4aed-9183-ec6a0e204f93">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textFieldExpression><![CDATA[$F{modelo}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="337" y="3" width="100" height="14" uuid="293028a7-3f95-4f5d-a0cc-f60b86975674">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textFieldExpression><![CDATA[$F{matricula}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="444" y="4" width="100" height="14" uuid="b993f340-0b87-4e8c-bd1e-9bcd5698cba8">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textFieldExpression><![CDATA[$F{fecha_expiracion}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="2" y="20" width="500" height="1" forecolor="#BDB7B7" uuid="882d1fac-3642-4b1e-9354-9eb6cf7066e7">
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+			</line>
+		</band>
+	</detail>
+</jasperReport>

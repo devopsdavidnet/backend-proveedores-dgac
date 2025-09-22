@@ -1,0 +1,562 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.21.5.final using JasperReports Library version 6.21.5-74d586df47b25dbd05bd0957999819196e59934a  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Blank_Letter_2" pageWidth="612" pageHeight="792" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="0" uuid="ba2a6733-d2df-42bb-a4ed-b07e4c8da75b">
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="organizacion"/>
+	<parameter name="id" class="java.lang.Integer"/>
+	<parameter name="SUBREPORT_PARAM" class="net.sf.jasperreports.engine.JasperReport"/>
+	<parameter name="SUBREPORT_PARAM_2" class="net.sf.jasperreports.engine.JasperReport"/>
+	<parameter name="SUBREPORT_PARAM_REGISTRO_AERONAVES" class="net.sf.jasperreports.engine.JasperReport"/>
+	<parameter name="SUBREPORT_PARAM_CARAT_ORGANIZACION_O_T_C" class="net.sf.jasperreports.engine.JasperReport"/>
+	<parameter name="SUBREPORT_PARAM_CAPACIDAD_ORGANIZACION" class="net.sf.jasperreports.engine.JasperReport"/>
+	<parameter name="SUBREPORT_PARAM_TIPO_ORGANIZACION" class="net.sf.jasperreports.engine.JasperReport"/>
+	<parameter name="SUBREPORT_PARAM_CERTIFICADOS_APROBADOS" class="net.sf.jasperreports.engine.JasperReport"/>
+	<parameter name="SUBREPORT_PARAM_DIRECTORIO_PERSONAL" class="net.sf.jasperreports.engine.JasperReport"/>
+	<parameter name="SUBREPORT_PARAM_PERSONAL_CERTIFICADO" class="net.sf.jasperreports.engine.JasperReport"/>
+	<parameter name="IMAGE_LOGO" class="java.io.InputStream"/>
+	<queryString language="SQL">
+		<![CDATA[SELECT d.departamento, c.nombre_clase_certificacion  ,o.*
+FROM proveedores.organizaciones o
+JOIN proveedores.departamentos d ON o.departamento_id = d.id  
+JOIN proveedores.clase_certificacion c ON o.resolucion_clase_certificacion = c.id_clase_certificacion 
+WHERE o. id = $P{id}
+]]>
+	</queryString>
+	<field name="departamento" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="departamento"/>
+		<property name="com.jaspersoft.studio.field.label" value="departamento"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="departamentos"/>
+	</field>
+	<field name="nombre_clase_certificacion" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="nombre_clase_certificacion"/>
+		<property name="com.jaspersoft.studio.field.label" value="nombre_clase_certificacion"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="clase_certificacion"/>
+	</field>
+	<field name="id" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.name" value="id"/>
+		<property name="com.jaspersoft.studio.field.label" value="id"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="organizaciones"/>
+	</field>
+	<field name="nombre_organizacion" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="nombre_organizacion"/>
+		<property name="com.jaspersoft.studio.field.label" value="nombre_organizacion"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="organizaciones"/>
+	</field>
+	<field name="tipo_explotador" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="tipo_explotador"/>
+		<property name="com.jaspersoft.studio.field.label" value="tipo_explotador"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="organizaciones"/>
+	</field>
+	<field name="departamento_id" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.name" value="departamento_id"/>
+		<property name="com.jaspersoft.studio.field.label" value="departamento_id"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="organizaciones"/>
+	</field>
+	<field name="direccion" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="direccion"/>
+		<property name="com.jaspersoft.studio.field.label" value="direccion"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="organizaciones"/>
+	</field>
+	<field name="telefono" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="telefono"/>
+		<property name="com.jaspersoft.studio.field.label" value="telefono"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="organizaciones"/>
+	</field>
+	<field name="correo" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="correo"/>
+		<property name="com.jaspersoft.studio.field.label" value="correo"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="organizaciones"/>
+	</field>
+	<field name="fecha_inicial_certificacion" class="java.sql.Date">
+		<property name="com.jaspersoft.studio.field.name" value="fecha_inicial_certificacion"/>
+		<property name="com.jaspersoft.studio.field.label" value="fecha_inicial_certificacion"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="organizaciones"/>
+	</field>
+	<field name="fecha_expiracion_certificacion" class="java.sql.Date">
+		<property name="com.jaspersoft.studio.field.name" value="fecha_expiracion_certificacion"/>
+		<property name="com.jaspersoft.studio.field.label" value="fecha_expiracion_certificacion"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="organizaciones"/>
+	</field>
+	<field name="numero_certificado" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="numero_certificado"/>
+		<property name="com.jaspersoft.studio.field.label" value="numero_certificado"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="organizaciones"/>
+	</field>
+	<field name="numero_resolucion" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="numero_resolucion"/>
+		<property name="com.jaspersoft.studio.field.label" value="numero_resolucion"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="organizaciones"/>
+	</field>
+	<field name="resolucion_clase_certificacion" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.name" value="resolucion_clase_certificacion"/>
+		<property name="com.jaspersoft.studio.field.label" value="resolucion_clase_certificacion"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="organizaciones"/>
+	</field>
+	<field name="otra_resolucion_clase_certificacion" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="otra_resolucion_clase_certificacion"/>
+		<property name="com.jaspersoft.studio.field.label" value="otra_resolucion_clase_certificacion"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="organizaciones"/>
+	</field>
+	<field name="tiene_sms" class="java.lang.Boolean">
+		<property name="com.jaspersoft.studio.field.name" value="tiene_sms"/>
+		<property name="com.jaspersoft.studio.field.label" value="tiene_sms"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="organizaciones"/>
+	</field>
+	<field name="fecha_acpetacion" class="java.sql.Date">
+		<property name="com.jaspersoft.studio.field.name" value="fecha_acpetacion"/>
+		<property name="com.jaspersoft.studio.field.label" value="fecha_acpetacion"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="organizaciones"/>
+	</field>
+	<field name="objetivos_indicadores" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="objetivos_indicadores"/>
+		<property name="com.jaspersoft.studio.field.label" value="objetivos_indicadores"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="organizaciones"/>
+	</field>
+	<field name="certificados_especificos_aprobados" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="certificados_especificos_aprobados"/>
+		<property name="com.jaspersoft.studio.field.label" value="certificados_especificos_aprobados"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="organizaciones"/>
+	</field>
+	<field name="aerovanves_registradas" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="aerovanves_registradas"/>
+		<property name="com.jaspersoft.studio.field.label" value="aerovanves_registradas"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="organizaciones"/>
+	</field>
+	<field name="naciona_extranjera" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="naciona_extranjera"/>
+		<property name="com.jaspersoft.studio.field.label" value="naciona_extranjera"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="organizaciones"/>
+	</field>
+	<field name="tamano_organizacion" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="tamano_organizacion"/>
+		<property name="com.jaspersoft.studio.field.label" value="tamano_organizacion"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="organizaciones"/>
+	</field>
+	<field name="complejidad_organizacion" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="complejidad_organizacion"/>
+		<property name="com.jaspersoft.studio.field.label" value="complejidad_organizacion"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="organizaciones"/>
+	</field>
+	<field name="tipo_operacion" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="tipo_operacion"/>
+		<property name="com.jaspersoft.studio.field.label" value="tipo_operacion"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="organizaciones"/>
+	</field>
+	<field name="otro_tipo_operacion" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="otro_tipo_operacion"/>
+		<property name="com.jaspersoft.studio.field.label" value="otro_tipo_operacion"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="organizaciones"/>
+	</field>
+	<field name="capacidades_organizacion" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="capacidades_organizacion"/>
+		<property name="com.jaspersoft.studio.field.label" value="capacidades_organizacion"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="organizaciones"/>
+	</field>
+	<field name="certificados" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="certificados"/>
+		<property name="com.jaspersoft.studio.field.label" value="certificados"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="organizaciones"/>
+	</field>
+	<field name="personal_directorio" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="personal_directorio"/>
+		<property name="com.jaspersoft.studio.field.label" value="personal_directorio"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="organizaciones"/>
+	</field>
+	<field name="personal_certificado" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="personal_certificado"/>
+		<property name="com.jaspersoft.studio.field.label" value="personal_certificado"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="organizaciones"/>
+	</field>
+	<field name="certificaciones" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="certificaciones"/>
+		<property name="com.jaspersoft.studio.field.label" value="certificaciones"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="organizaciones"/>
+	</field>
+	<field name="tipo_ciac_ceac" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="tipo_ciac_ceac"/>
+		<property name="com.jaspersoft.studio.field.label" value="tipo_ciac_ceac"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="organizaciones"/>
+	</field>
+	<field name="estado_registro" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="estado_registro"/>
+		<property name="com.jaspersoft.studio.field.label" value="estado_registro"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="organizaciones"/>
+	</field>
+	<field name="usuario_creado" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="usuario_creado"/>
+		<property name="com.jaspersoft.studio.field.label" value="usuario_creado"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="organizaciones"/>
+	</field>
+	<field name="fecha_registro" class="java.sql.Timestamp">
+		<property name="com.jaspersoft.studio.field.name" value="fecha_registro"/>
+		<property name="com.jaspersoft.studio.field.label" value="fecha_registro"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="organizaciones"/>
+	</field>
+	<field name="ruta_file" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="ruta_file"/>
+		<property name="com.jaspersoft.studio.field.label" value="ruta_file"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="organizaciones"/>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="62" splitType="Stretch">
+			<staticText>
+				<reportElement x="264" y="40" width="116" height="18" uuid="7b611942-5d78-4134-8aad-9936a255a906"/>
+				<textElement textAlignment="Center">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[DGAC - BOLIVIA
+]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="122" y="24" width="416" height="17" uuid="738409fe-cfd3-4076-8756-22a162b5a6a9"/>
+				<textElement textAlignment="Left">
+					<font fontName="DejaVu Sans" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[REPORTE DE INFORMACIÓN GENERAL DE LA ORGANIZACIÓN]]></text>
+			</staticText>
+			<image>
+				<reportElement x="11" y="8" width="100" height="50" uuid="a543d0eb-9783-4fd9-8956-82a474b7041d"/>
+				<imageExpression><![CDATA[$P{IMAGE_LOGO}]]></imageExpression>
+			</image>
+			<textField pattern="dd/MM/yyyy HH:mm">
+				<reportElement positionType="FixRelativeToBottom" x="467" y="4" width="105" height="13" uuid="f9a149e2-1404-4953-92f4-e88947add1ed"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="9" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement positionType="FixRelativeToBottom" x="318" y="5" width="148" height="14" uuid="bedae548-55a8-400f-86e7-bddbd3ed3135"/>
+				<textElement textAlignment="Right">
+					<font size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Fecha y hora de Impresión:]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="2" splitType="Stretch"/>
+	</pageHeader>
+	<detail>
+		<band height="307" splitType="Stretch">
+			<textField>
+				<reportElement x="123" y="123" width="367" height="12" uuid="eecf9f73-8cd0-4781-9f95-d83c7e86921b">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="cc7a6799-ad37-47e8-9e31-c35aa1c094ad"/>
+				</reportElement>
+				<textElement>
+					<font fontName="DejaVu Sans"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{correo}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="70" y="121" width="48" height="14" uuid="8c5fcb0e-4bd9-445d-855b-a2a115b7133a"/>
+				<textElement textAlignment="Left">
+					<font fontName="DejaVu Sans" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Correo :]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="123" y="108" width="235" height="14" uuid="37f6cb35-3990-4a3a-8ddc-b7273f3eb320">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="cc917ef5-19cf-4a2d-9453-bb952f5eaee3"/>
+				</reportElement>
+				<textElement>
+					<font fontName="DejaVu Sans"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{telefono}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="59" y="107" width="61" height="14" uuid="ac07619a-11f4-4644-9ce2-ff021f1b256c"/>
+				<textElement textAlignment="Left">
+					<font fontName="DejaVu Sans" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Teléfono :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="57" y="90" width="61" height="14" uuid="a1dd3849-968d-4024-b7a2-3b986a2b86eb"/>
+				<textElement>
+					<font fontName="DejaVu Sans" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Dirección :]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="123" y="93" width="405" height="17" uuid="1b38b213-055b-4373-8962-329be4232eb3">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="fa055b72-fdf4-414f-acc4-22971d45241f"/>
+				</reportElement>
+				<textElement>
+					<font fontName="DejaVu Sans"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{direccion}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="28" y="76" width="98" height="14" uuid="86a9ff40-ccd7-4055-8fa4-b87694b310dd"/>
+				<textElement>
+					<font fontName="DejaVu Sans" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Departamento :]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="124" y="59" width="313" height="19" uuid="d5a3a928-4985-42b8-9d0a-0898e0bcf666">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="9d3eecff-525c-4b04-bd9d-d584d5e0b859"/>
+				</reportElement>
+				<textElement>
+					<font fontName="DejaVu Sans"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nombre_organizacion}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="36" y="60" width="90" height="14" uuid="5148df94-0b1c-40f5-b345-548fc7d6234a"/>
+				<textElement>
+					<font fontName="DejaVu Sans" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Organización :]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="124" y="43" width="140" height="18" uuid="ddaccc48-eba1-425d-88ac-aa7fa8701e04">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="993a728c-9539-4dc7-a964-1a14fa8e213f"/>
+				</reportElement>
+				<textElement>
+					<font fontName="DejaVu Sans"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{tipo_explotador}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="7" y="42" width="118" height="14" uuid="5fe023e1-a287-475a-ac31-4412d7158735"/>
+				<textElement>
+					<font fontName="DejaVu Sans" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Tipo de Proveedor :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="129" y="176" width="157" height="14" uuid="838cce30-339a-49fe-8a33-2d173528b3b1"/>
+				<textElement>
+					<font fontName="DejaVu Sans" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Fecha Certificación Inicial :]]></text>
+			</staticText>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement x="287" y="176" width="160" height="15" uuid="2b6ca082-b138-4133-af2b-7793ca4edde4"/>
+				<textFieldExpression><![CDATA[$F{fecha_inicial_certificacion}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="161" y="192" width="128" height="14" uuid="b1e4e5c5-f6fe-43f3-85d5-fd76afd09974"/>
+				<textElement>
+					<font fontName="DejaVu Sans" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Fecha de Expiración :]]></text>
+			</staticText>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement x="287" y="193" width="179" height="15" uuid="d05fb395-5be4-41f6-b295-ebc67331f697"/>
+				<textFieldExpression><![CDATA[$F{fecha_expiracion_certificacion}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="95" y="207" width="189" height="14" uuid="d288b83a-bb29-431c-a149-5ca3899709a8"/>
+				<textElement>
+					<font fontName="DejaVu Sans" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Certificado emitido por la DGAC :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="10" y="222" width="281" height="14" uuid="93324365-92c1-4756-8c71-33e9ea97d2c0"/>
+				<textElement>
+					<font fontName="DejaVu Sans" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Resolución Administrativa emitido por la DGAC :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="100" y="254" width="189" height="14" uuid="26718e63-3aea-4a3d-8b0e-32f4ce40b3b2"/>
+				<textElement>
+					<font fontName="DejaVu Sans" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Clase de certificación otorgada :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="89" y="290" width="198" height="14" uuid="ca670907-1dec-4033-89f3-8918425ea87e">
+					<printWhenExpression><![CDATA[$F{fecha_acpetacion} != null]]></printWhenExpression>
+				</reportElement>
+				<textElement>
+					<font fontName="DejaVu Sans" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Fecha Aceptación inicial del SMS :]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="289" y="208" width="146" height="13" uuid="e0f48c8a-e3ea-4777-b3f5-0e3ad1f72b6f"/>
+				<textFieldExpression><![CDATA[$F{numero_certificado}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="287" y="223" width="122" height="12" uuid="543c92de-2ff4-4d95-81ef-9452b6792940"/>
+				<textFieldExpression><![CDATA[$F{numero_resolucion}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="285" y="272" width="280" height="19" uuid="a1bb3033-3fb5-4dea-b76c-07b31818b46d">
+					<printWhenExpression><![CDATA[$F{otra_resolucion_clase_certificacion} != null && !$F{otra_resolucion_clase_certificacion}.trim().isEmpty()]]></printWhenExpression>
+				</reportElement>
+				<textFieldExpression><![CDATA[$F{otra_resolucion_clase_certificacion}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="286" y="291" width="187" height="13" uuid="fce2fc12-6e31-4b3d-92be-5bbffe72ac34">
+					<printWhenExpression><![CDATA[$F{fecha_acpetacion} != null]]></printWhenExpression>
+				</reportElement>
+				<textFieldExpression><![CDATA[$F{fecha_acpetacion}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="172" y="238" width="121" height="14" uuid="cc7c7721-f96a-464b-bf14-5eedc3fda89d">
+					<printWhenExpression><![CDATA[$F{tipo_explotador} != null && $F{tipo_explotador}.equals("CIAC")]]></printWhenExpression>
+				</reportElement>
+				<textElement>
+					<font fontName="DejaVu Sans" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Tipo de Operación :]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="287" y="239" width="211" height="15" uuid="47c83794-7b08-4125-9a34-0c54fa8337c8">
+					<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<printWhenExpression><![CDATA[$F{tipo_explotador} != null && $F{tipo_explotador}.equals("CIAC")]]></printWhenExpression>
+				</reportElement>
+				<textFieldExpression><![CDATA[$F{tipo_operacion}]]></textFieldExpression>
+			</textField>
+			<rectangle radius="0">
+				<reportElement mode="Opaque" x="0" y="141" width="567" height="17" backcolor="#C7DEFF" uuid="2ddf03fe-d5c0-436c-ad32-e7deb9460ee6">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="1.0" lineStyle="Solid"/>
+				</graphicElement>
+			</rectangle>
+			<staticText>
+				<reportElement x="5" y="144" width="290" height="16" uuid="b502d2ce-1097-48d2-aeaa-107010b3dec5"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[2. CERTIFICACIÓN :]]></text>
+			</staticText>
+			<rectangle radius="0">
+				<reportElement mode="Opaque" x="1" y="20" width="567" height="17" backcolor="#C7DEFF" uuid="ef46f67a-4aeb-4cd0-bc41-eb7195fca471">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="1.0" lineStyle="Solid"/>
+				</graphicElement>
+			</rectangle>
+			<staticText>
+				<reportElement x="5" y="23" width="351" height="15" uuid="1579e69b-8550-4f61-8ab0-b5fc99360348">
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+				</reportElement>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[1. INFORMACIÓN GENERAL DE LA ORGANIZACIÓN :]]></text>
+			</staticText>
+			<line>
+				<reportElement x="1" y="7" width="570" height="1" forecolor="#171515" uuid="fe19ada8-8c47-4a9c-bb8d-de97b84711f8">
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+			</line>
+			<textField>
+				<reportElement x="123" y="76" width="217" height="14" uuid="478c6a6d-3f62-4311-a115-991b1fc1c4d6"/>
+				<textFieldExpression><![CDATA[$F{departamento}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="285" y="255" width="162" height="17" uuid="b0477627-0821-4dea-aa01-118ba3de3559"/>
+				<textFieldExpression><![CDATA[$F{nombre_clase_certificacion}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<summary>
+		<band height="220">
+			<subreport>
+				<reportElement positionType="Float" x="2" y="2" width="557" height="22" uuid="7eb4d517-bd8c-47b3-b1aa-44624ba1e6f5">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<subreportParameter name="id">
+					<subreportParameterExpression><![CDATA[$P{id}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_PARAM}]]></subreportExpression>
+			</subreport>
+			<subreport>
+				<reportElement positionType="Float" x="2" y="26" width="554" height="21" uuid="bfcd43e7-3024-41be-b2eb-9e90a3d460f6">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<printWhenExpression><![CDATA[$F{tipo_explotador}.equals("AOC")]]></printWhenExpression>
+				</reportElement>
+				<subreportParameter name="id">
+					<subreportParameterExpression><![CDATA[$P{id}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_PARAM_2}]]></subreportExpression>
+			</subreport>
+			<subreport>
+				<reportElement positionType="Float" x="3" y="48" width="554" height="22" uuid="9a653a7c-384c-464e-97c5-6d8129cef8d8">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<subreportParameter name="id">
+					<subreportParameterExpression><![CDATA[$P{id}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_PARAM_REGISTRO_AERONAVES}]]></subreportExpression>
+			</subreport>
+			<subreport>
+				<reportElement positionType="Float" x="5" y="72" width="551" height="23" uuid="e3577832-2402-4e77-96ed-fb48e53f17dd"/>
+				<subreportParameter name="id">
+					<subreportParameterExpression><![CDATA[$P{id}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_PARAM_CARAT_ORGANIZACION_O_T_C}]]></subreportExpression>
+			</subreport>
+			<subreport>
+				<reportElement positionType="Float" x="3" y="95" width="554" height="25" uuid="0ff72c3c-115f-4c72-88eb-51bdf6c42b17">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<printWhenExpression><![CDATA[$F{tipo_explotador}.equals("OMA")]]></printWhenExpression>
+				</reportElement>
+				<subreportParameter name="id">
+					<subreportParameterExpression><![CDATA[$P{id}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_PARAM_CAPACIDAD_ORGANIZACION}]]></subreportExpression>
+			</subreport>
+			<subreport>
+				<reportElement positionType="Float" x="3" y="122" width="554" height="25" uuid="06e67d11-5f8b-4a63-9de5-16db2b0cc820">
+					<printWhenExpression><![CDATA[$F{tipo_explotador}.equals("CIAC")]]></printWhenExpression>
+				</reportElement>
+				<subreportParameter name="id">
+					<subreportParameterExpression><![CDATA[$P{id}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_PARAM_TIPO_ORGANIZACION}]]></subreportExpression>
+			</subreport>
+			<subreport>
+				<reportElement positionType="Float" x="3" y="149" width="555" height="21" uuid="d7eaed3b-5236-4899-a5e2-5e05acea77f1"/>
+				<subreportParameter name="id">
+					<subreportParameterExpression><![CDATA[$P{id}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_PARAM_CERTIFICADOS_APROBADOS}]]></subreportExpression>
+			</subreport>
+			<subreport>
+				<reportElement positionType="Float" x="3" y="171" width="553" height="22" uuid="c3cfe623-88aa-4add-ad4b-d77feeb28c33">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<subreportParameter name="id">
+					<subreportParameterExpression><![CDATA[$P{id}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_PARAM_DIRECTORIO_PERSONAL}]]></subreportExpression>
+			</subreport>
+			<subreport>
+				<reportElement positionType="Float" x="2" y="193" width="500" height="22" uuid="9a6db247-4a02-4885-a553-4baac8b06eff">
+					<printWhenExpression><![CDATA[$F{tipo_explotador}.equals("CIAC")]]></printWhenExpression>
+				</reportElement>
+				<subreportParameter name="id">
+					<subreportParameterExpression><![CDATA[$P{id}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_PARAM_PERSONAL_CERTIFICADO}]]></subreportExpression>
+			</subreport>
+		</band>
+	</summary>
+</jasperReport>

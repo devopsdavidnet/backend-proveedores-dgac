@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.21.5.final using JasperReports Library version 6.21.5-74d586df47b25dbd05bd0957999819196e59934a  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Reporte_Habilitaciones" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="0" rightMargin="20" topMargin="0" bottomMargin="0" uuid="22222222-2222-2222-2222-222222222222">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="organizacion"/>
+	<parameter name="id" class="java.lang.Integer"/>
+	<queryString>
+		<![CDATA[SELECT
+            o.id AS id_organizacion,
+            elem->>'nombre' AS nombre,
+            elem->>'valor' AS valor
+        FROM proveedores.organizaciones o
+        CROSS JOIN LATERAL jsonb_array_elements(o.tipo_ciac_ceac) AS elem
+        WHERE  o.id = $P{id}
+        ORDER BY o.id, nombre]]>
+	</queryString>
+	<field name="id_organizacion" class="java.lang.Integer"/>
+	<field name="nombre" class="java.lang.String"/>
+	<field name="valor" class="java.lang.String"/>
+	<pageHeader>
+		<band height="27">
+			<staticText>
+				<reportElement x="-2" y="2" width="220" height="12" uuid="7fda8705-7e07-4545-a7aa-ea9c0b4b75ee">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[ TIPO DE ORGANIZACIÓN/ENTIDAD :
+]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="61" y="13" width="30" height="12" uuid="0626b654-0620-4757-a5fb-c8b0b3876868">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Tipo]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="270" y="11" width="40" height="12" uuid="133c6d31-5ded-4182-908c-d9f92d9515f1">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Si/No]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<detail>
+		<band height="21">
+			<textField>
+				<reportElement x="270" y="-1" width="30" height="20" uuid="4855d1e5-70a2-4e4c-8212-06bdaaee634d"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA["true".equalsIgnoreCase($F{valor}) ? "Si" : "No"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="20" y="3" width="208" height="17" uuid="41bf148b-43bc-4150-a5fd-bc0510781d11">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textFieldExpression><![CDATA[$F{nombre}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="2" y="20" width="500" height="1" forecolor="#BDB7B7" uuid="a6a9fcf2-cfa2-4af7-adc7-0ba6acf1d8e1">
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+			</line>
+		</band>
+	</detail>
+</jasperReport>

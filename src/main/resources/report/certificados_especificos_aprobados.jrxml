@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.21.5.final using JasperReports Library version 6.21.5-74d586df47b25dbd05bd0957999819196e59934a  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Reporte_Certificados" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="0" rightMargin="20" topMargin="0" bottomMargin="0" uuid="33333333-3333-3333-3333-333333333333">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="organizacion"/>
+	<parameter name="id" class="java.lang.Integer"/>
+	<queryString>
+		<![CDATA[SELECT 
+            elem->>'nombre' AS nombre,
+            elem->>'certificado' AS valor,
+            elem->>'fechaExpiracion' AS fechaExpiracion
+        FROM proveedores.organizaciones o
+        CROSS JOIN LATERAL jsonb_array_elements(o.certificados) AS elem
+        WHERE o.id = $P{id}]]>
+	</queryString>
+	<field name="nombre" class="java.lang.String"/>
+	<field name="valor" class="java.lang.String"/>
+	<field name="fechaExpiracion" class="java.lang.String"/>
+	<pageHeader>
+		<band height="14">
+			<staticText>
+				<reportElement x="0" y="0" width="530" height="14" uuid="e114409e-0486-45fd-9986-3265872817f7">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[CERTIFICACIONES O PARTICIPACION EN PROGRAMAS DE INTERCAMBIO DE LA INDUSTRIA :]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="20">
+			<staticText>
+				<reportElement mode="Opaque" x="0" y="0" width="274" height="20" backcolor="#E0E0E0" uuid="945c794e-a305-494c-a24b-b8a8de2455cb"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle"/>
+				<text><![CDATA[Nombre Certificado]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="274" y="0" width="66" height="20" backcolor="#E0E0E0" uuid="b01a0baa-7e1b-41b4-98b4-c7bcf9d2c422"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[Si/No]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="340" y="0" width="160" height="20" backcolor="#E0E0E0" uuid="ec6e34fd-2145-4c84-832c-9c200cc2e6b2"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[Fecha Expiración]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="20">
+			<textField>
+				<reportElement x="0" y="0" width="274" height="20" uuid="79af4e3d-a409-4bca-9fc1-6890e349187a"/>
+				<textFieldExpression><![CDATA[$F{nombre}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="279" y="-1" width="60" height="20" uuid="36bbf601-a360-4562-8a17-7bcdbd05ec9a"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA["true".equalsIgnoreCase($F{valor}) ? "Si" : "No"]]></textFieldExpression>
+			</textField>
+			<textField pattern="yyyy-MM-dd">
+				<reportElement x="370" y="2" width="130" height="18" uuid="cfbdae3e-98cc-41b9-bca2-f1cedaa31166">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textFieldExpression><![CDATA[$F{fechaExpiracion} != null ? $F{fechaExpiracion} : ""]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="0" y="19" width="500" height="1" forecolor="#BDB7B7" uuid="75906326-834f-4c38-86c2-61ecc1eb16df"/>
+			</line>
+		</band>
+	</detail>
+</jasperReport>

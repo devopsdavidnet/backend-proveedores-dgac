@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.21.5.final using JasperReports Library version 6.21.5-74d586df47b25dbd05bd0957999819196e59934a  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="personal_directorio" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="0" rightMargin="20" topMargin="0" bottomMargin="0" uuid="2a1c8f2a-1234-4567-890a-bcdef1234567">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="organizacion"/>
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.data.sql.SQLQueryDesigner.sash.w1" value="200"/>
+	<property name="com.jaspersoft.studio.data.sql.SQLQueryDesigner.sash.w2" value="789"/>
+	<parameter name="id" class="java.lang.Integer"/>
+	<queryString>
+		<![CDATA[SELECT  
+                elem->>'cedula'          AS cedula,
+                elem->>'nombres'         AS nombres,
+                elem->>'licencia'        AS licencia,
+                elem->>'primerApellido'  AS primer_apellido,
+                elem->>'segundoApellido' AS segundo_apellido
+            FROM proveedores.organizaciones o
+            CROSS JOIN LATERAL jsonb_array_elements(o.personal_certificado->'personal') AS elem
+            WHERE o.id = $P{id}]]>
+	</queryString>
+	<field name="cedula" class="java.lang.String"/>
+	<field name="nombres" class="java.lang.String"/>
+	<field name="licencia" class="java.lang.String"/>
+	<field name="primer_apellido" class="java.lang.String"/>
+	<field name="segundo_apellido" class="java.lang.String"/>
+	<title>
+		<band height="18">
+			<staticText>
+				<reportElement x="4" y="2" width="210" height="15" uuid="b8044def-6986-4f91-b277-f87af033be06">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Left">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[PERSONAL CERTIFICADO :]]></text>
+			</staticText>
+		</band>
+	</title>
+	<columnHeader>
+		<band height="20">
+			<staticText>
+				<reportElement x="42" y="0" width="88" height="20" uuid="80f502de-9b3d-4087-8023-2e1b79a602c0"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Nombres]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="132" y="0" width="110" height="20" uuid="e7cc6497-2257-49bc-95c3-4e89a4e75f58"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Primer Apellido]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="243" y="0" width="114" height="20" uuid="5865e9ca-2ddd-48aa-b5d5-5dc4083c8d6a"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Segundo Apellido]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="353" y="0" width="102" height="20" uuid="6bbcd856-ab9e-4f4d-9998-f6d9ecb97b62"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Cédula]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="462" y="0" width="87" height="20" uuid="640f7353-2da6-469e-be58-c3235417f110"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Licencia]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="3" y="0" width="37" height="20" uuid="ff6404f2-782d-4d97-baf8-bf1d76086b7e"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Nro.]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="21">
+			<textField>
+				<reportElement x="1" y="1" width="41" height="15" uuid="5562ac77-aa8f-467a-990b-a15878b3379c">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{REPORT_COUNT}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="366" y="1" width="101" height="16" uuid="450966f1-9092-4efb-b316-34d85f26992a">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textFieldExpression><![CDATA[$F{cedula}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="48" y="1" width="117" height="16" uuid="6596ad5b-db1c-48b7-81da-d6b16c0d60ec">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textFieldExpression><![CDATA[$F{nombres}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="474" y="1" width="111" height="16" uuid="21502123-c345-49f0-8e47-9d234c9f7dde">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textFieldExpression><![CDATA[$F{licencia}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="148" y="1" width="91" height="16" uuid="b9a13a4c-e332-4ad6-9d97-73dfbca119fc">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textFieldExpression><![CDATA[$F{primer_apellido}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="245" y="0" width="112" height="16" uuid="264b0537-5615-4470-8ad3-bc050beef413">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textFieldExpression><![CDATA[$F{segundo_apellido}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="3" y="20" width="600" height="1" forecolor="#BDB7B7" uuid="f09600cf-e893-4a09-8963-2ae45734cbae">
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+			</line>
+		</band>
+	</detail>
+</jasperReport>

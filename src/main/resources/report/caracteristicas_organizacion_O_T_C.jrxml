@@ -1,0 +1,240 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.21.5.final using JasperReports Library version 6.21.5-74d586df47b25dbd05bd0957999819196e59934a  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="caracteristicas_organizacion_O_T_C" pageWidth="612" pageHeight="792" columnWidth="555" leftMargin="0" rightMargin="20" topMargin="0" bottomMargin="0" uuid="99dab9d8-2287-4115-bf78-e4dd28d313e8">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="organizacion"/>
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<parameter name="id" class="java.lang.Integer"/>
+	<queryString>
+		<![CDATA[SELECT *
+FROM proveedores.organizaciones o
+WHERE  o.id = $P{id}]]>
+	</queryString>
+	<field name="id" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.name" value="id"/>
+		<property name="com.jaspersoft.studio.field.label" value="id"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="organizaciones"/>
+	</field>
+	<field name="nombre_organizacion" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="nombre_organizacion"/>
+		<property name="com.jaspersoft.studio.field.label" value="nombre_organizacion"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="organizaciones"/>
+	</field>
+	<field name="tipo_explotador" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="tipo_explotador"/>
+		<property name="com.jaspersoft.studio.field.label" value="tipo_explotador"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="organizaciones"/>
+	</field>
+	<field name="departamento_id" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="departamento_id"/>
+		<property name="com.jaspersoft.studio.field.label" value="departamento_id"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="organizaciones"/>
+	</field>
+	<field name="direccion" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="direccion"/>
+		<property name="com.jaspersoft.studio.field.label" value="direccion"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="organizaciones"/>
+	</field>
+	<field name="telefono" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="telefono"/>
+		<property name="com.jaspersoft.studio.field.label" value="telefono"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="organizaciones"/>
+	</field>
+	<field name="correo" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="correo"/>
+		<property name="com.jaspersoft.studio.field.label" value="correo"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="organizaciones"/>
+	</field>
+	<field name="fecha_inicial_certificacion" class="java.sql.Date">
+		<property name="com.jaspersoft.studio.field.name" value="fecha_inicial_certificacion"/>
+		<property name="com.jaspersoft.studio.field.label" value="fecha_inicial_certificacion"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="organizaciones"/>
+	</field>
+	<field name="fecha_expiracion_certificacion" class="java.sql.Date">
+		<property name="com.jaspersoft.studio.field.name" value="fecha_expiracion_certificacion"/>
+		<property name="com.jaspersoft.studio.field.label" value="fecha_expiracion_certificacion"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="organizaciones"/>
+	</field>
+	<field name="numero_certificado" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="numero_certificado"/>
+		<property name="com.jaspersoft.studio.field.label" value="numero_certificado"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="organizaciones"/>
+	</field>
+	<field name="numero_resolucion" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="numero_resolucion"/>
+		<property name="com.jaspersoft.studio.field.label" value="numero_resolucion"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="organizaciones"/>
+	</field>
+	<field name="resolucion_clase_certificacion" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.name" value="resolucion_clase_certificacion"/>
+		<property name="com.jaspersoft.studio.field.label" value="resolucion_clase_certificacion"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="organizaciones"/>
+	</field>
+	<field name="otra_resolucion_clase_certificacion" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="otra_resolucion_clase_certificacion"/>
+		<property name="com.jaspersoft.studio.field.label" value="otra_resolucion_clase_certificacion"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="organizaciones"/>
+	</field>
+	<field name="tiene_sms" class="java.lang.Boolean">
+		<property name="com.jaspersoft.studio.field.name" value="tiene_sms"/>
+		<property name="com.jaspersoft.studio.field.label" value="tiene_sms"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="organizaciones"/>
+	</field>
+	<field name="fecha_acpetacion" class="java.sql.Date">
+		<property name="com.jaspersoft.studio.field.name" value="fecha_acpetacion"/>
+		<property name="com.jaspersoft.studio.field.label" value="fecha_acpetacion"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="organizaciones"/>
+	</field>
+	<field name="objetivos_indicadores" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="objetivos_indicadores"/>
+		<property name="com.jaspersoft.studio.field.label" value="objetivos_indicadores"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="organizaciones"/>
+	</field>
+	<field name="certificados_especificos_aprobados" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="certificados_especificos_aprobados"/>
+		<property name="com.jaspersoft.studio.field.label" value="certificados_especificos_aprobados"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="organizaciones"/>
+	</field>
+	<field name="aerovanves_registradas" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="aerovanves_registradas"/>
+		<property name="com.jaspersoft.studio.field.label" value="aerovanves_registradas"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="organizaciones"/>
+	</field>
+	<field name="naciona_extranjera" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="naciona_extranjera"/>
+		<property name="com.jaspersoft.studio.field.label" value="naciona_extranjera"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="organizaciones"/>
+	</field>
+	<field name="tamano_organizacion" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="tamano_organizacion"/>
+		<property name="com.jaspersoft.studio.field.label" value="tamano_organizacion"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="organizaciones"/>
+	</field>
+	<field name="complejidad_organizacion" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="complejidad_organizacion"/>
+		<property name="com.jaspersoft.studio.field.label" value="complejidad_organizacion"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="organizaciones"/>
+	</field>
+	<field name="tipo_operacion" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="tipo_operacion"/>
+		<property name="com.jaspersoft.studio.field.label" value="tipo_operacion"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="organizaciones"/>
+	</field>
+	<field name="otro_tipo_operacion" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="otro_tipo_operacion"/>
+		<property name="com.jaspersoft.studio.field.label" value="otro_tipo_operacion"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="organizaciones"/>
+	</field>
+	<field name="capacidades_organizacion" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="capacidades_organizacion"/>
+		<property name="com.jaspersoft.studio.field.label" value="capacidades_organizacion"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="organizaciones"/>
+	</field>
+	<field name="certificados" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="certificados"/>
+		<property name="com.jaspersoft.studio.field.label" value="certificados"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="organizaciones"/>
+	</field>
+	<field name="personal_certificado" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="personal_certificado"/>
+		<property name="com.jaspersoft.studio.field.label" value="personal_certificado"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="organizaciones"/>
+	</field>
+	<field name="certificaciones" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="certificaciones"/>
+		<property name="com.jaspersoft.studio.field.label" value="certificaciones"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="organizaciones"/>
+	</field>
+	<field name="tipo_ciac_ceac" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="tipo_ciac_ceac"/>
+		<property name="com.jaspersoft.studio.field.label" value="tipo_ciac_ceac"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="organizaciones"/>
+	</field>
+	<field name="estado_registro" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="estado_registro"/>
+		<property name="com.jaspersoft.studio.field.label" value="estado_registro"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="organizaciones"/>
+	</field>
+	<field name="usuario_creado" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="usuario_creado"/>
+		<property name="com.jaspersoft.studio.field.label" value="usuario_creado"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="organizaciones"/>
+	</field>
+	<field name="fecha_registro" class="java.sql.Timestamp">
+		<property name="com.jaspersoft.studio.field.name" value="fecha_registro"/>
+		<property name="com.jaspersoft.studio.field.label" value="fecha_registro"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="organizaciones"/>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<pageHeader>
+		<band height="30">
+			<rectangle radius="1">
+				<reportElement mode="Opaque" x="0" y="8" width="580" height="18" backcolor="#C7DEFF" uuid="64f7a460-7413-4489-a566-ea38205a4b05">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+			</rectangle>
+			<staticText>
+				<reportElement x="4" y="11" width="313" height="12" uuid="69b2fc45-f269-43e3-abe0-e737f90e365a">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Left">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[3. CARACTERISTICAS DE LA ORGANIZACIÓN :]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<detail>
+		<band height="61" splitType="Stretch">
+			<staticText>
+				<reportElement x="106" y="3" width="84" height="12" uuid="871c3769-5ed9-448f-aed2-64f3bd7ddf29">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<printWhenExpression><![CDATA[$F{tipo_explotador}.equals("OMA") || $F{tipo_explotador}.equals("CIAC")]]></printWhenExpression>
+				</reportElement>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Organización :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="26" y="24" width="168" height="12" uuid="9002d3ea-c51c-4d6b-b551-e99b5eb1b474">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Tamaño de la  Organización :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="6" y="45" width="187" height="12" uuid="f5ff89e7-3906-422d-85da-e3dae23bc12c">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Complejidad de la Organización :]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="198" y="4" width="300" height="15" uuid="c3a66a64-6981-4721-a7ee-a2975b8d50d4">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<printWhenExpression><![CDATA[$F{tipo_explotador}.equals("OMA") || $F{tipo_explotador}.equals("CIAC")]]></printWhenExpression>
+				</reportElement>
+				<textFieldExpression><![CDATA[$F{naciona_extranjera}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="197" y="23" width="302" height="15" uuid="1c1d066a-9fd4-4754-9c50-ab7c003356df">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textFieldExpression><![CDATA[$F{tamano_organizacion}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="198" y="46" width="301" height="15" uuid="8c883569-5b06-402f-bcca-9209b76eea92">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textFieldExpression><![CDATA[$F{complejidad_organizacion}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>

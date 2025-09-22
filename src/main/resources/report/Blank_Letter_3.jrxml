@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.21.5.final using JasperReports Library version 6.21.5-74d586df47b25dbd05bd0957999819196e59934a  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Objetivos_Metas_Indicadores" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="0" rightMargin="20" topMargin="0" bottomMargin="0" uuid="11111111-1111-1111-1111-111111111111">
+	<property name="com.jaspersoft.studio.data.sql.SQLQueryDesigner.sash.w1" value="297"/>
+	<property name="com.jaspersoft.studio.data.sql.SQLQueryDesigner.sash.w2" value="697"/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="organizacion"/>
+	<parameter name="id" class="java.lang.Integer"/>
+	<queryString>
+		<![CDATA[-- Pega aquí la consulta SQL
+        SELECT
+            o.id AS id_organizacion,
+            objetivo->>'nombreObjetivo' AS nombre_objetivo,
+            meta->>'nombreMeta' AS nombre_meta,
+            indicador->>'nombreIndicador' AS nombre_indicador,
+            indicador->>'tipo' AS tipo,
+            indicador->>'formula' AS formula,
+            indicador->>'nivelAlerta1' AS nivel_alerta_1,
+            indicador->>'nivelAlerta2' AS nivel_alerta_2,
+            indicador->>'nivelAlerta3' AS nivel_alerta_3,
+            indicador->>'periodicidad' AS periodicidad
+        FROM proveedores.organizaciones o
+        CROSS JOIN LATERAL jsonb_array_elements(o.objetivos_indicadores->'objetivos') AS objetivo
+        LEFT JOIN LATERAL jsonb_array_elements(COALESCE(objetivo->'metas', '[]'::jsonb)) AS meta ON true
+        LEFT JOIN LATERAL jsonb_array_elements(COALESCE(meta->'indicadores', '[]'::jsonb)) AS indicador ON true
+        WHERE  o.id = $P{id}
+        ORDER BY  o.id, nombre_objetivo, nombre_meta, nombre_indicador]]>
+	</queryString>
+	<field name="nombre_objetivo" class="java.lang.String"/>
+	<field name="nombre_meta" class="java.lang.String"/>
+	<field name="nombre_indicador" class="java.lang.String"/>
+	<field name="tipo" class="java.lang.String"/>
+	<field name="formula" class="java.lang.String"/>
+	<field name="nivel_alerta_1" class="java.lang.String"/>
+	<field name="nivel_alerta_2" class="java.lang.String"/>
+	<field name="nivel_alerta_3" class="java.lang.String"/>
+	<field name="periodicidad" class="java.lang.String"/>
+	<group name="GrupoObjetivo">
+		<groupExpression><![CDATA[$F{nombre_objetivo}]]></groupExpression>
+		<groupHeader>
+			<band height="20">
+				<textField>
+					<reportElement mode="Opaque" x="0" y="-2" width="555" height="18" backcolor="#E0E0E0" uuid="45bef541-f0be-4558-85bb-e656b38434fe">
+						<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					</reportElement>
+					<textElement>
+						<font isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA["Objetivo: " + $F{nombre_objetivo}]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupHeader>
+	</group>
+	<group name="GrupoMeta">
+		<groupExpression><![CDATA[$F{nombre_meta}]]></groupExpression>
+		<groupHeader>
+			<band height="18">
+				<textField>
+					<reportElement mode="Opaque" x="20" y="0" width="535" height="18" backcolor="#F0F0F0" uuid="11059517-c5c2-4272-9dab-a75bc7d83954"/>
+					<textElement>
+						<font isItalic="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA["Meta: " + $F{nombre_meta}]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupHeader>
+	</group>
+	<title>
+		<band height="20">
+			<staticText>
+				<reportElement x="2" y="4" width="415" height="16" backcolor="#E0E0E0" uuid="225d65ca-cc7c-440f-8e4c-073218e8d716"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[GESTIÓN DE SEGURIDAD OPERACIONAL (SMS) :]]></text>
+			</staticText>
+		</band>
+	</title>
+	<detail>
+		<band height="60">
+			<textField>
+				<reportElement x="40" y="0" width="515" height="15" uuid="cc951fcc-200b-4ecc-81f1-a733904a51b7"/>
+				<textFieldExpression><![CDATA["Indicador: " + $F{nombre_indicador}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="40" y="15" width="515" height="15" uuid="42d029ab-2663-4261-853d-2320eeddfa91"/>
+				<textFieldExpression><![CDATA["Tipo: " + $F{tipo} + " | Fórmula: " + $F{formula}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="40" y="30" width="515" height="15" uuid="50f095a1-0148-4322-88a6-8fde388bdd6a"/>
+				<textFieldExpression><![CDATA["Alertas: " + $F{nivel_alerta_1} + ", " + $F{nivel_alerta_2} + ", " + $F{nivel_alerta_3}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="40" y="45" width="515" height="15" uuid="63e3bdee-1c7a-4633-a7a4-cbeb9a6f3f92"/>
+				<textFieldExpression><![CDATA["Periodicidad: " + $F{periodicidad}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>
