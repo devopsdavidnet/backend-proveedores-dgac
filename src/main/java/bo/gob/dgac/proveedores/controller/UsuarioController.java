@@ -10,11 +10,13 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import bo.gob.dgac.proveedores.dto.UsuarioDto;
 import bo.gob.dgac.proveedores.dto.UsuarioLoginDTO;
 import bo.gob.dgac.proveedores.model.UsuarioEntity;
 import bo.gob.dgac.proveedores.service.UsuarioService;
@@ -48,10 +50,10 @@ public class UsuarioController {
     }
     
     @GetMapping()
-public ResponseEntity<List<UsuarioEntity>> findAll() {
+    public ResponseEntity<List<UsuarioEntity>> findAll() {
     List<UsuarioEntity> usuarios = service.findAll();
     return ResponseEntity.ok(usuarios);
-}
+    }
     
     @GetMapping("/{id}")
     public ResponseEntity<UsuarioEntity> getById(@PathVariable Long id) {
@@ -69,7 +71,7 @@ public ResponseEntity<List<UsuarioEntity>> findAll() {
 
     @PostMapping("/guardar")
     public ResponseEntity<UsuarioEntity> create(@RequestBody UsuarioEntity usuario){
-    	return ResponseEntity.ok(service.save(usuario));
+    	return ResponseEntity.ok(service.guardarUsuario(usuario));
     }
     /*
     @PutMapping("/put/{id}")
@@ -81,4 +83,47 @@ public ResponseEntity<List<UsuarioEntity>> findAll() {
         service.delete(id);
         return ResponseEntity.noContent().build();
     }
+    
+    @PutMapping("/actualizar")
+    public ResponseEntity<?> actualizarUsuarios(@RequestBody List<UsuarioDto> usuarios) {
+        usuarios.forEach(u -> {
+            // Buscar usuario existente
+            UsuarioEntity entity = service.findById(u.getId())
+                   .orElseThrow(() -> new RuntimeException("Usuario no encontrado con id: " + u.getId()));
+            System.out.println("id ="+u.getId());
+           System.out.println("dddddddddd"+ u.getNombre());
+           System.out.println("dddddddddd"+ u.getPrimerApellido());
+           System.out.println("dddddddddd"+ u.getEstadoRegistro());
+
+            
+            entity.setNombre(u.getNombre());
+            entity.setPrimerApellido(u.getPrimerApellido());
+            entity.setSegundoApellido(u.getSegundoApellido());
+            
+            
+            if(!entity.getCorreo().equals(u.getCorreo())) {
+            	entity.setCorreo(u.getCorreo());	
+            	entity.setEstadoRegistro(u.getEstadoRegistro());
+            	service.actualizarEnviarCorreo(entity);
+            }else {
+            	entity.setCorreo(u.getCorreo());	
+            }
+            
+            if(entity.getEstadoRegistro().equals("PE") && u.getEstadoRegistro().equals("AC") ) {
+            	entity.setEstadoRegistro(u.getEstadoRegistro());
+            	service.actualizarEnviarCorreo(entity);
+            } else {
+            	service.guardarUsu(entity);
+            }          	
+                
+
+            
+            
+        });
+
+        return ResponseEntity.ok(" Usuarios actualizados correctamente");
+    }
+
+    
+    
 }

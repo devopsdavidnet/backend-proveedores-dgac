@@ -40,10 +40,8 @@ public Optional<UsuarioEntity> findByCorreo(String correo) {
     return repository.findByCorreo(correo);
 }
 
-public UsuarioEntity save(UsuarioEntity usuario) {
+public UsuarioEntity actualizarEnviarCorreo (UsuarioEntity usuario) {
 
-	
-	 
 	
 	String nuevaPassword = passwordService.generarPassword();
 	correoWebClientService.enviarCorreo(usuario.getCorreo(),"Credenciales",""
@@ -73,17 +71,28 @@ public UsuarioEntity save(UsuarioEntity usuario) {
 			+ "        </td>\n"
 			+ "    </tr>\n"
 			+ "</table> ");
-			usuario.setContrasenia(nuevaPassword);
-	
+     usuario.setContrasenia(nuevaPassword);
+     
     return repository.save(usuario);
-    
-    
-    
-    
-    
-    
-    
 }
+
+public UsuarioEntity guardarUsuario(UsuarioEntity usuario) {
+	        usuario.setRolUsuario(2);  
+	        usuario.setEstadoRegistro("PE");
+    return repository.save(usuario);
+}
+
+public UsuarioEntity guardarUsu(UsuarioEntity usuario) {
+return repository.save(usuario);
+}
+
+
+
+
+
+
+
+
 /*import org.springframework.stereotype.Service;
 import java.util.Optional;
 
@@ -118,14 +127,20 @@ public UsuarioLoginDTO login(String correo, String contrasenia) {
 
 /*
 public UsuarioLoginDTO login(String correo, String contrasenia) {
-	
 	Optional<UsuarioEntity> usuarioExistente= usuarioRepository.
 	
 }*/
 
+
+
+
+
 public void delete(Long id) {
     repository.deleteById(id);
 }
+
+
+
 
 }
 

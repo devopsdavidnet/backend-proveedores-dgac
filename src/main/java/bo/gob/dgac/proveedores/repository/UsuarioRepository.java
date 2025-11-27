@@ -21,6 +21,7 @@ public interface UsuarioRepository extends JpaRepository<UsuarioEntity, Long> {
                 u.primerApellido,
                 u.segundoApellido,
                 u.celular,
+                u.rolUsuario,
                 u.idProveedor,
                 o.nombreOrganizacion,
     			o.tipoExplotador,

@@ -1,5 +1,7 @@
 package bo.gob.dgac.proveedores.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -292,6 +294,8 @@ public class OrganizacionService {
 	        return organizacionRepository.save(organizacionObj);
 	    }
 
-
+	 public List<OrganizacionEntity> listarOrganizacionesConDocumentos() {
+	        return organizacionRepository.findAll();
+	    }
 
 }

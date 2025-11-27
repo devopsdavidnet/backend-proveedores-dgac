@@ -51,17 +51,15 @@ public class UsuarioEntity {
    @Column(name="rol_usuario")
    private Integer rolUsuario;
    
+   @Column(name="estado_registro")
+   private String estadoRegistro;
+   
     @Column(name = "fecha_creado", columnDefinition = "TIMESTAMPTZ DEFAULT CURRENT_TIMESTAMP")
     private OffsetDateTime fechaCreado;
     
-    
-    
-
     @PrePersist
     protected void onCreate() {
         this.fechaCreado = OffsetDateTime.now();
     }
-    
-    
     
 }

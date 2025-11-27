@@ -9,6 +9,7 @@ public record UsuarioLoginDTO(
 	    String primerApellido,
 	    String segundoApellido,
 	    String celular,
+	    Integer rolUsuario,
 	    Integer idOrganizacion,
 	    String nombreOrganizacion,
 	    String tipoExplotador,
