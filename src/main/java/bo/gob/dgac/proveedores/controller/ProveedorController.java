@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 import bo.gob.dgac.proveedores.model.ProveedorEntity;
 import bo.gob.dgac.proveedores.service.ProveedoresService;
 
+
 @RestController
 @RequestMapping(
 	    value = "/api/proveedores",

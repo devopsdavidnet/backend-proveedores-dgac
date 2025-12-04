@@ -71,8 +71,20 @@ public class UsuarioController {
 
     @PostMapping("/guardar")
     public ResponseEntity<UsuarioEntity> create(@RequestBody UsuarioEntity usuario){
+    	 System.out.println("usuario a guardar"+ usuario.toString());
     	return ResponseEntity.ok(service.guardarUsuario(usuario));
     }
+    
+    
+    //@PostMapping(value ="/guardarInspector", consumes = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping("/guardarInspector")
+	public ResponseEntity<UsuarioEntity> createInspector(@RequestBody UsuarioEntity usuario) {
+    	System.out.println("********************entro a guardarInspector**************************");
+		System.out.println("usuario a guardarInspector :" + usuario.toString());
+		return ResponseEntity.ok(service.guardarInspector(usuario));
+	//	return null;
+   }
+    
     /*
     @PutMapping("/put/{id}")
 	public ResponseEntity<UsuarioEntity> update (@PathVariable Long id,@RequestBody UsuarioEntity usuario){

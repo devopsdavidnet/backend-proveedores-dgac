@@ -103,7 +103,8 @@ public class OrganizacionEntity {
     private Integer tipoOrganizacionId;
     @Column(name ="otras_certificaciones_id")
     private Integer otrasCertificacionesId;*/
-    @JdbcTypeCode(SqlTypes.JSON)
+    
+	@JdbcTypeCode(SqlTypes.JSON)
     @Column(name = "personal_certificado", columnDefinition = "jsonb")
       private JsonNode  personalCertificado;
 

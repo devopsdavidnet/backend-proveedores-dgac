@@ -26,7 +26,7 @@ import lombok.NoArgsConstructor;
 @Builder
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class DocumentosEntity {
-
+  
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;

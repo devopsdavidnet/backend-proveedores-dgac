@@ -4,12 +4,14 @@ import java.time.LocalDate;
 
 import com.fasterxml.jackson.databind.JsonNode;
 
+import bo.gob.dgac.proveedores.model.RolEntity;
+
 public record UsuarioLoginDTO(
 	    String nombre,
 	    String primerApellido,
 	    String segundoApellido,
 	    String celular,
-	    Integer rolUsuario,
+	    RolEntity rolUsuario,
 	    Integer idOrganizacion,
 	    String nombreOrganizacion,
 	    String tipoExplotador,

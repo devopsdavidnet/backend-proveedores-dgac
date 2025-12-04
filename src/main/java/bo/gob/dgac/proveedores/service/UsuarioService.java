@@ -77,9 +77,16 @@ public UsuarioEntity actualizarEnviarCorreo (UsuarioEntity usuario) {
 }
 
 public UsuarioEntity guardarUsuario(UsuarioEntity usuario) {
-	        usuario.setRolUsuario(2);  
+	   //     usuario.setRolUsuario(2);  
 	        usuario.setEstadoRegistro("PE");
     return repository.save(usuario);
+}
+
+public UsuarioEntity guardarInspector(UsuarioEntity usuario) {
+   // usuario.setRolUsuario(3);  
+    usuario.setEstadoRegistro("AC");
+    return repository.save(usuario);
+
 }
 
 public UsuarioEntity guardarUsu(UsuarioEntity usuario) {
