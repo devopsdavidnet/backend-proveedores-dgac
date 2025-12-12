@@ -16,6 +16,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.node.ObjectNode;
+
 import bo.gob.dgac.proveedores.dto.UsuarioDto;
 import bo.gob.dgac.proveedores.dto.UsuarioLoginDTO;
 import bo.gob.dgac.proveedores.model.UsuarioEntity;
@@ -38,7 +41,8 @@ public class UsuarioController {
     @PostMapping("/login")
     public ResponseEntity<?> login(@RequestParam String correo,
                                  @RequestParam String contrasenia) {
-        UsuarioLoginDTO usuario = service.login(correo, contrasenia);
+    	UsuarioLoginDTO usuario = null;
+    	usuario = service.login(correo, contrasenia);
         if (usuario != null) {
 
             return new ResponseEntity<UsuarioLoginDTO>(usuario, HttpStatus.OK);
@@ -70,19 +74,31 @@ public class UsuarioController {
     }
 
     @PostMapping("/guardar")
-    public ResponseEntity<UsuarioEntity> create(@RequestBody UsuarioEntity usuario){
-    	 System.out.println("usuario a guardar"+ usuario.toString());
-    	return ResponseEntity.ok(service.guardarUsuario(usuario));
+    public ResponseEntity<UsuarioEntity> create(@RequestBody /*UsuarioEntity*/ JsonNode usuarioNode){
+    	
+    	
+    	 /*ObjectNode usuario = (ObjectNode) usuarioNode;
+         usuario.put("rolUsuario", "2");*/
+ 		//UsuarioEntity usuario1 = service.convertirAUsuarioEntity(usuario);
+    	UsuarioEntity usuario= service.convertirAUsuarioEntity(usuarioNode);
+    	System.out.println("********************entro a guardar usuario**************************");
+ 		System.out.println("dddddddddddddddddddd :"+usuarioNode.toString());
+ 		//return ResponseEntity.ok(service.guardarUsuario(usuario1));
+ 		return null;
     }
     
     
     //@PostMapping(value ="/guardarInspector", consumes = MediaType.APPLICATION_JSON_VALUE)
     @PostMapping("/guardarInspector")
-	public ResponseEntity<UsuarioEntity> createInspector(@RequestBody UsuarioEntity usuario) {
+	public ResponseEntity<UsuarioEntity> createInspector(@RequestBody /*UsuarioEntity*/ JsonNode jsonUsuario) {
     	System.out.println("********************entro a guardarInspector**************************");
-		System.out.println("usuario a guardarInspector :" + usuario.toString());
+		System.out.println("usuario a guardarInspector :" + jsonUsuario.toString());
+		
+		UsuarioEntity usuario = service.convertirAUsuarioEntity(jsonUsuario);
+        //	service.actualizarEnviarCorreo(usuario);
+		
 		return ResponseEntity.ok(service.guardarInspector(usuario));
-	//	return null;
+		
    }
     
     /*
@@ -102,7 +118,7 @@ public class UsuarioController {
             // Buscar usuario existente
             UsuarioEntity entity = service.findById(u.getId())
                    .orElseThrow(() -> new RuntimeException("Usuario no encontrado con id: " + u.getId()));
-            System.out.println("id ="+u.getId());
+           System.out.println("id ="+u.getId());
            System.out.println("dddddddddd"+ u.getNombre());
            System.out.println("dddddddddd"+ u.getPrimerApellido());
            System.out.println("dddddddddd"+ u.getEstadoRegistro());

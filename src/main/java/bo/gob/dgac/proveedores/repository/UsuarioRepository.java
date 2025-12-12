@@ -54,7 +54,7 @@ public interface UsuarioRepository extends JpaRepository<UsuarioEntity, Long> {
     			
     			)
             FROM UsuarioEntity u
-            JOIN OrganizacionEntity o ON u.idProveedor = o.id
+            LEFT JOIN OrganizacionEntity o ON u.idProveedor = o.id
             WHERE u.correo = :correo AND u.contrasenia = :contrasenia
         """)
         UsuarioLoginDTO loginUsuario(@Param("correo") String correo,

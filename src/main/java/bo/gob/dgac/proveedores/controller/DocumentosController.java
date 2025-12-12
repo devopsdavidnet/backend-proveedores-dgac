@@ -40,7 +40,9 @@ public class DocumentosController {
 	  public ResponseEntity<List<DocumentosEntity>> listar(@PathVariable("idOrganizacion") Long idOrganizacion) {
 	        List<DocumentosEntity> doc = documentosService.findByOrganizacion(idOrganizacion);
 	        return ResponseEntity.ok(doc);
-	    }	  
+	    }	
+    
+    
 	   @GetMapping("/ver/{id}")
 	   public ResponseEntity<InputStreamResource> verARchivo(@PathVariable Long id) throws IOException {
 		   

@@ -6,8 +6,11 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.fasterxml.jackson.databind.JsonNode;
+
 import bo.gob.dgac.proveedores.dto.UsuarioLoginDTO;
 import bo.gob.dgac.proveedores.externo.CorreoWebClientService;
+import bo.gob.dgac.proveedores.model.RolEntity;
 import bo.gob.dgac.proveedores.model.UsuarioEntity;
 import bo.gob.dgac.proveedores.repository.UsuarioRepository;
 import lombok.RequiredArgsConstructor;
@@ -27,7 +30,30 @@ CorreoWebClientService correoWebClientService;
 private PasswordService passwordService;
 
 
-
+public UsuarioEntity convertirAUsuarioEntity(JsonNode jsonUsuario ) {
+	
+	UsuarioEntity usuario = new UsuarioEntity();
+	RolEntity rol = new RolEntity();
+	System.out.println("********************entro a convertirAUsuarioEntity en service**************************");
+	System.out.println("********************entro:"+jsonUsuario.get("rolUsuario").asLong());
+	usuario.setNombre(jsonUsuario.get("nombre").asText());
+	usuario.setPrimerApellido(jsonUsuario.get("primerApellido").asText());
+	usuario.setSegundoApellido(jsonUsuario.get("segundoApellido").asText());
+	usuario.setCedulaIdentidad(jsonUsuario.get("cedulaIdentidad").asText());
+	usuario.setCelular(jsonUsuario.get("celular").asText());
+	usuario.setCargo( jsonUsuario.get("cargo").asText());
+	usuario.setCorreo( jsonUsuario.get("correo").asText());
+	
+	//rolUsuario
+	
+	System.out.println("*** ROLUSUARIO :"+jsonUsuario.get("rolUsuario").asLong());
+	
+	rol.setIdRol(jsonUsuario.get("rolUsuario").asLong());
+	usuario.setRolUsuario(rol);
+	actualizarEnviarCorreo(usuario);
+	return usuario;
+   
+}
 public List<UsuarioEntity> findAll() {
     return repository.findAll();
 }
@@ -85,6 +111,7 @@ public UsuarioEntity guardarUsuario(UsuarioEntity usuario) {
 public UsuarioEntity guardarInspector(UsuarioEntity usuario) {
    // usuario.setRolUsuario(3);  
     usuario.setEstadoRegistro("AC");
+    System.out.println("********************entro a guardarInspector en service**************************");
     return repository.save(usuario);
 
 }

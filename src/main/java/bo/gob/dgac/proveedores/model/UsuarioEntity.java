@@ -59,10 +59,6 @@ public class UsuarioEntity {
    @Column(nullable = false, length = 255)
     private String contrasenia;
    
-   /*@Column(name="rol_usuario")
-   private Integer rolUsuario;*/
-   
-   
    @ManyToOne 
    @JoinColumn(name="rol_usuario", referencedColumnName="id_rol")
    private RolEntity rolUsuario;
